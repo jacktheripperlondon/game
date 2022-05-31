@@ -9,7 +9,7 @@ class Cell:
             location,
             width=12,
             height=4,
-            text='cell'
+            text='cell-1'
         )    
         btn.bind('<Button-1>',self.left_click)
         self.cell_btn_object=btn
