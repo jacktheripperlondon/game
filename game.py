@@ -54,7 +54,7 @@ centre_frame.place(x=utils.width_perct(25),y=utils.height_perct(25))
 
 for x in range(settings.GRIDSIZE):
     for y in range(settings.GRIDSIZE):
-        c=Cell()
+        c=Cell(x,y)
         c.create_button(centre_frame)
         c.cell_btn_object.grid(
             column=x,
