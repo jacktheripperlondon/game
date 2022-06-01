@@ -60,7 +60,8 @@ for x in range(settings.GRIDSIZE):
             column=x,
             row=y
         )
-
-
+Cell.random_mines()
+for c in Cell.all:
+    print(c.is_mine)
 
 root.mainloop()
