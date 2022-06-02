@@ -15,7 +15,7 @@ class Cell:
             location,
             width=12,
             height=4,
-            text=f"{self.x},{self.y}"
+            
         )    
         btn.bind('<Button-1>',self.left_click)
         self.cell_btn_object=btn
@@ -23,10 +23,18 @@ class Cell:
 
 
     def left_click(self,event):
-        print(event)
+        if self.is_mine:
+            self.show_mine()
+
 
     def right_click(self,event):
         print(event)
+
+
+    def show_mine(self):
+        self.cell_btn_object.configure(bg='red')
+
+
     
     @staticmethod
     def random_mines():

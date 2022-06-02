@@ -38,18 +38,6 @@ centre_frame=Frame(
 )
 centre_frame.place(x=utils.width_perct(25),y=utils.height_perct(25))
 
-# c1=Cell()
-# c1.create_button(centre_frame)
-# c1.cell_btn_object.grid(
-#     column=0,
-#     row=0
-# )
-# c2=Cell()
-# c2.create_button(centre_frame)
-# c2.cell_btn_object.grid(
-#     column=0,
-#     row=1
-# )
 
 
 for x in range(settings.GRIDSIZE):
