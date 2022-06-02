@@ -1,3 +1,4 @@
+from itertools import count
 from tkinter import Button
 import random
 
@@ -25,16 +26,46 @@ class Cell:
     def left_click(self,event):
         if self.is_mine:
             self.show_mine()
+        else:
+            self.show_cell()    
 
 
     def right_click(self,event):
         print(event)
 
+    
+    def get_cell_by_axis(self,x,y):
+        for cell in Cell.all:
+            if cell.x==x and cell.y==y:
+                return cell 
 
     def show_mine(self):
         self.cell_btn_object.configure(bg='red')
+    @property
+    def surrounded_cells(self):
+        cells = [
+            self.get_cell_by_axis(self.x - 1, self.y -1),
+            self.get_cell_by_axis(self.x - 1, self.y),
+            self.get_cell_by_axis(self.x - 1, self.y + 1),
+            self.get_cell_by_axis(self.x, self.y - 1),
+            self.get_cell_by_axis(self.x + 1, self.y - 1),
+            self.get_cell_by_axis(self.x + 1, self.y),
+            self.get_cell_by_axis(self.x + 1, self.y + 1),
+            self.get_cell_by_axis(self.x, self.y + 1)
+        ]
+        
+        cells=[cell for cell in cells if cell is not None]
+        return cells
+    @property
+    def surrounded_cells_mines(self):
+        counter=0
+        for cell in self.surrounded_cells:
+            if cell.is_mine:
+                counter+=1
+        return counter        
 
-
+    def show_cell(self):
+        self.cell_btn_object.configure(text=self.surrounded_cells_mines)
     
     @staticmethod
     def random_mines():

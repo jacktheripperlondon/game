@@ -49,7 +49,6 @@ for x in range(settings.GRIDSIZE):
             row=y
         )
 Cell.random_mines()
-for c in Cell.all:
-    print(c.is_mine)
+
 
 root.mainloop()

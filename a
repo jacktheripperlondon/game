@@ -1,0 +1,57 @@
+[1mdiff --git a/cell.py b/cell.py[m
+[1mindex 28ba6b9..17b6260 100644[m
+[1m--- a/cell.py[m
+[1m+++ b/cell.py[m
+[36m@@ -1,3 +1,4 @@[m
+[32m+[m[32mfrom itertools import count[m
+ from tkinter import Button[m
+ import random[m
+ [m
+[36m@@ -25,16 +26,46 @@[m [mclass Cell:[m
+     def left_click(self,event):[m
+         if self.is_mine:[m
+             self.show_mine()[m
+[32m+[m[32m        else:[m
+[32m+[m[32m            self.show_cell()[m[41m    [m
+ [m
+ [m
+     def right_click(self,event):[m
+         print(event)[m
+ [m
+[32m+[m[41m    [m
+[32m+[m[32m    def get_cell_by_axis(self,x,y):[m
+[32m+[m[32m        for cell in Cell.all:[m
+[32m+[m[32m            if cell.x==x and cell.y==y:[m
+[32m+[m[32m                return cell[m[41m [m
+ [m
+     def show_mine(self):[m
+         self.cell_btn_object.configure(bg='red')[m
+[32m+[m[32m    @property[m
+[32m+[m[32m    def surrounded_cells(self):[m
+[32m+[m[32m        cells = [[m
+[32m+[m[32m            self.get_cell_by_axis(self.x - 1, self.y -1),[m
+[32m+[m[32m            self.get_cell_by_axis(self.x - 1, self.y),[m
+[32m+[m[32m            self.get_cell_by_axis(self.x - 1, self.y + 1),[m
+[32m+[m[32m            self.get_cell_by_axis(self.x, self.y - 1),[m
+[32m+[m[32m            self.get_cell_by_axis(self.x + 1, self.y - 1),[m
+[32m+[m[32m            self.get_cell_by_axis(self.x + 1, self.y),[m
+[32m+[m[32m            self.get_cell_by_axis(self.x + 1, self.y + 1),[m
+[32m+[m[32m            self.get_cell_by_axis(self.x, self.y + 1)[m
+[32m+[m[32m        ][m
+[32m+[m[41m        [m
+[32m+[m[32m        cells=[cell for cell in cells if cell is not None][m
+[32m+[m[32m        return cells[m
+[32m+[m[32m    @property[m
+[32m+[m[32m    def surrounded_cells_mines(self):[m
+[32m+[m[32m        counter=0[m
+[32m+[m[32m        for cell in self.surrounded_cells:[m
+[32m+[m[32m            if cell.is_mine:[m
+[32m+[m[32m                counter+=1[m
+[32m+[m[32m        return counter[m[41m        [m
+ [m
+[31m-[m
+[32m+[m[32m    def show_cell(self):[m
+[32m+[m[32m        self.cell_btn_object.configure(text=self.surrounded_cells_mines)[m
+     [m
+     @staticmethod[m
+     def random_mines():[m
