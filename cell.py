@@ -1,7 +1,7 @@
 from itertools import count
-from tkinter import Button
+from tkinter import Button, Label
 import random
-
+import settings
 from scipy import rand
 class Cell:
     all=[]
@@ -27,8 +27,16 @@ class Cell:
         if self.is_mine:
             self.show_mine()
         else:
+            if self.surrounded_cells_mines==0:
+                for cell_obj in self.surrounded_cells:
+                    cell_obj.show_cell()
             self.show_cell()    
-
+    @staticmethod
+    def cell_count(location):
+        lbl=Label(
+            location,
+            text=f"Cells Left:{settings.no_of_cells}"
+        )
 
     def right_click(self,event):
         print(event)
