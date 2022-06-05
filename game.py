@@ -1,5 +1,6 @@
 from re import T
 from tkinter import *
+from turtle import left
 import settings
 import utils 
 from cell import Cell
@@ -22,6 +23,17 @@ top_frame=Frame(
     )
 top_frame.place(x=0,y=0)    
 
+game_title=Label(
+    top_frame,
+    bg='black',
+    fg='white',
+    text='Minesweeper game',
+    font=("",30)
+)
+game_title.place(
+    x=utils.width_perct(25),
+    y=0
+)
 left_frame=Frame(
     root,
     bg='black',
@@ -50,5 +62,6 @@ for x in range(settings.GRIDSIZE):
         )
 Cell.random_mines()
 
-
+Cell.cell_count(left_frame)
+Cell.cell_count_label.place(x=0,y=0)
 root.mainloop()

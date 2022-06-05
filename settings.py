@@ -2,3 +2,4 @@ WIDTH=1440
 HEIGHT=720
 GRIDSIZE=6
 no_of_cells=GRIDSIZE**2
+NO_OF_MINES=no_of_cells//4
